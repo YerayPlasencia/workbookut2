@@ -5,7 +5,7 @@ package es.cip.yerayplasenciaramos.ut02;
  * 
  * */
 
-public class Cliente implements Runnable{
+public class Cliente extends Thread{
 	
 	Cuenta cuenta;
     int cantidad;

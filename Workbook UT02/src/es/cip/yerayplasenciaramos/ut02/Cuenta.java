@@ -10,7 +10,7 @@ public class Cuenta {
 	private int saldo;
 	
 	public Cuenta(int saldo){
-		this.saldo=saldo;
+		this.saldo = saldo;
 	}
 
 	public int getSaldo() {
@@ -25,7 +25,7 @@ public class Cuenta {
 	    this.saldo = this.saldo + cantidad;
 	}
 	
-	public boolean sinSaldo(){
+	public boolean conSaldo(){
 	    if (this.saldo >= 0) return true; //saldo mayor o igual a 0
 	    return false;
 	}
