@@ -8,11 +8,9 @@ package es.cip.yerayplasenciaramos.ut02;
 public class Cliente extends Thread{
 	
 	Cuenta cuenta;
-    int cantidad;
-    
-    public Cliente (Cuenta cuenta, int cantidad) {
+
+    public Cliente (Cuenta cuenta) {
     	this.cuenta = cuenta;
-    	this.cantidad = cantidad;
     }
     
 	public Cuenta getCuenta() {
@@ -21,15 +19,46 @@ public class Cliente extends Thread{
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
-	public int getCantidad() {
-		return cantidad;
+	
+	private static boolean esMultiplo(int cantidad) {
+		if (cantidad % 5 == 0){
+            return true;
+        }else{
+            return false;
+        }
 	}
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
+	
+	private static int cantidadValida() {
+		int cantidad = 0;
+		boolean valido = false;
+		
+	     while (valido!=true) {
+	    	 cantidad = (int) (Math.random()*(100 + 1 - 5) + 5);
+	    	 if(esMultiplo(cantidad)){
+		         valido = true;
+		     }
+	     }
+		return cantidad;
 	}
 	
 	@Override
     public void run() {
-		cuenta.hacerMovimiento(cantidad);
+		while (cuenta.conSaldo()){
+			if(!Thread.currentThread().getName().equals("Cliente1")) {
+				cuenta.hacerMovimiento(-cantidadValida());
+			}else {
+				int cantidad = 10;
+				cuenta.hacerMovimiento(cantidad);
+			}		
+			try {     
+				sleep(1);   
+			} catch ( InterruptedException e ) {     
+				//TODO Excepcion    } 
+			}
+		}
+		if(!cuenta.conSaldo()) {
+			System.out.println("Cuenta Bloqueada, SALDO: " + cuenta.getSaldo());
+			System.exit(0);
+		}
     }
 }

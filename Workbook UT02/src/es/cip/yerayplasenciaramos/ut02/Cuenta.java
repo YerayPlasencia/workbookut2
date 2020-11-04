@@ -22,11 +22,16 @@ public class Cuenta {
 	}
 	
 	public synchronized void hacerMovimiento(int cantidad){
-	    this.saldo = this.saldo + cantidad;
+		if (saldo + cantidad >=0){
+			System.out.println("Operación: " + cantidad);	
+			this.saldo = this.saldo + cantidad;
+		}else{
+			System.out.println("Operación: " + cantidad + " >> AVISO: No hay dinero suficiente para retirar, indique otra cantidad, SALDO: " + getSaldo());
+		}
 	}
 	
 	public boolean conSaldo(){
-	    if (this.saldo >= 0) return true; //saldo mayor o igual a 0
+	    if (this.saldo > 0) return true; //saldo mayor o igual a 0
 	    return false;
 	}
 
