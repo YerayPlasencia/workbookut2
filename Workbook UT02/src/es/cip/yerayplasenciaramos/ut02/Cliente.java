@@ -57,7 +57,7 @@ public class Cliente extends Thread{
 			}
 		}
 		if(!cuenta.conSaldo()) {
-			System.out.println("Cuenta Bloqueada, SALDO: " + cuenta.getSaldo());
+			System.out.println("Usuario: " + Thread.currentThread().getName() + " Cuenta Bloqueada, SALDO: " + cuenta.getSaldo());
 			System.exit(0);
 		}
     }

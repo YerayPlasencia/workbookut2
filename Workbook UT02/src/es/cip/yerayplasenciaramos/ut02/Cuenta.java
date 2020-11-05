@@ -23,10 +23,10 @@ public class Cuenta {
 	
 	public synchronized void hacerMovimiento(int cantidad){
 		if (saldo + cantidad >=0){
-			System.out.println("Operación: " + cantidad);	
 			this.saldo = this.saldo + cantidad;
+			System.out.println("Usuario: "+ Thread.currentThread().getName() + " Operación: " + cantidad + " << Saldo >>: " + getSaldo());	
 		}else{
-			System.out.println("Operación: " + cantidad + " >> AVISO: No hay dinero suficiente para retirar, indique otra cantidad, SALDO: " + getSaldo());
+			System.out.println("Usuario: "+ Thread.currentThread().getName() + " Operación: " + cantidad + " >> AVISO: No hay dinero suficiente para retirar, indique otra cantidad, SALDO: " + getSaldo());
 		}
 	}
 	
